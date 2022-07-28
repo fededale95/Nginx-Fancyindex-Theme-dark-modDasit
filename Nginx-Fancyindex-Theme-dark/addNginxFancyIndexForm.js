@@ -18,23 +18,26 @@ document.querySelector('h1').after(form);
 var listTd = [].slice.call(document.querySelectorAll('#list tbody td'));
 var found = false;
 var found2 = false;
+
 for(i in listTd){
     a = listTd[i].querySelector('a');
     contenuto = listTd[i].textContent;
     if(found2){
-	classDate=listTd[i].className;
+        classDate=listTd[i].className;
         listTd[i].className=classDate.replace('date','date htmls');
         found2 = false;
     }else if(found){
-	classSize=listTd[i].className;
-	listTd[i].className=classSize.replace('size','size htmls');
-	found = false;
-	found2 = true;
+        classSize=listTd[i].className;
+        listTd[i].className=classSize.replace('size','size htmls');
+        found = false;
+        found2 = true;
     }
-    if(contenuto.endsWith(".html")){
+    if(contenuto.endsWith(".html") && !contenuto.startsWith("~$")){
         classA=a.className;
         a.className=classA.replace('','htmls');
-	found = true;
+        found = true;
+    }else if(contenuto.startsWith("~$")){ //avviso se qualcuno sta modificando il contenuto
+        alert("Qualcuno sta modificando i dati di questa VPN, meglio che accedi più tardi.");
     }
 }
 
