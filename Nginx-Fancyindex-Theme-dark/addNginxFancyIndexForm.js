@@ -18,7 +18,6 @@ document.querySelector('h1').after(form);
 var listTd = [].slice.call(document.querySelectorAll('#list tbody td'));
 var found = false;
 var found2 = false;
-
 for(i in listTd){
     a = listTd[i].querySelector('a');
     contenuto = listTd[i].textContent;
@@ -36,7 +35,7 @@ for(i in listTd){
         classA=a.className;
         a.className=classA.replace('','htmls');
         found = true;
-    }else if(contenuto.startsWith("~$")){ //avviso se qualcuno sta modificando il contenuto
+    }else if(contenuto.startsWith("~$") && contenuto.endsWith(".html")){ //avviso se qualcuno sta modificando il contenuto
         alert("Qualcuno sta modificando i dati di questa VPN, meglio che accedi più tardi.");
     }
 }
